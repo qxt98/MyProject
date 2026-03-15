@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 基于 Spring Boot 的药品信息智能化管理系统
 
 毕业设计项目：药品信息智能化管理系统的设计与实现。
@@ -158,3 +159,6 @@ npm run dev
 ## 许可证
 
 见 [LICENSE](LICENSE)。
+=======
+基于 Spring Boot 的药品信息智能化管理系统的设计与实现
+>>>>>>> ccc719760daef9fd20c3a0f2ceebb19042d72bcf
