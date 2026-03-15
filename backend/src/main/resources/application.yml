@@ -1,0 +1,66 @@
+spring:
+  application:
+    name: smart-pharma-backend
+  datasource:
+    url: jdbc:mysql://localhost:3306/smart_pharma?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: 200498qiu
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+    open-in-view: false
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+# JWT 配置（示例，生产环境请使用环境变量或配置中心）
+jwt:
+  secret: your-256-bit-secret-key-change-in-production
+  expiration-ms: 86400000
+
+# Swagger / OpenAPI 3（context-path 为 /api 时，请访问 http://host:8080/api/swagger-ui.html）
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    # 使用 context-path 时让 Swagger UI 正确加载 api-docs 与 swagger-config
+    config-url: /api/v3/api-docs/swagger-config
+    url: /api/v3/api-docs
+
+# 患者用药指导 AI（OpenAI 兼容接口，不配置 api-key 则使用规则兜底）
+guide:
+  ai:
+    enabled: true
+    # 请勿将真实 Key 提交到版本库，可使用环境变量 GUIDE_AI_API_KEY
+    api-key: ${GUIDE_AI_API_KEY:}
+    base-url: https://api.deepseek.com
+    model: deepseek-chat
+    max-tokens: 500
+  # 未登录用户限流与安全
+  limit:
+    max-asks-per-window: 3
+    window-hours: 1
+    question-max-length: 500
+
+# 日志
+logging:
+  level:
+    root: INFO
+    com.smartpharma: DEBUG
+    org.hibernate.SQL: DEBUG

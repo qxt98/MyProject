@@ -1,0 +1,24 @@
+# Docker 环境配置：由 docker-compose 通过环境变量覆盖数据源等
+server:
+  address: 0.0.0.0
+  port: 8080
+
+# JWT 密钥（至少 32 字符），Docker 下未设置时使用与主配置相同的默认值
+jwt:
+  secret: ${JWT_SECRET:your-256-bit-secret-key-change-in-production}
+
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://mysql:3306/smart_pharma?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true}
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    password: ${SPRING_DATASOURCE_PASSWORD:root}
+    hikari:
+      connection-timeout: 60000
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+logging:
+  level:
+    root: INFO
+    com.smartpharma: INFO

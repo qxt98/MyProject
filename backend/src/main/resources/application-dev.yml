@@ -1,0 +1,14 @@
+# 开发环境配置
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/smart_pharma?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: 200498qiu
+
+logging:
+  level:
+    com.smartpharma: DEBUG
