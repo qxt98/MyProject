@@ -14,7 +14,7 @@ export const ROUTE_ROLES = {
   '/drugs': ['ADMIN', 'PHARMACIST'],
   '/stock': ['ADMIN', 'PHARMACIST', 'PURCHASER'],
   '/purchase': ['ADMIN', 'PHARMACIST', 'PURCHASER', 'REVIEWER'],
-  '/prescription': ['ADMIN', 'REVIEWER', 'DOCTOR', 'NURSE'],
+  '/prescription': ['ADMIN', 'REVIEWER', 'DOCTOR'],
   '/guide': [],
   '/system': ['ADMIN'],
   '/operation-log': ['ADMIN'],

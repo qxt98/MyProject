@@ -55,8 +55,8 @@ public class SecurityConfig {
                         .requestMatchers("/stock/**").hasAnyRole("ADMIN", "PHARMACIST", "PURCHASER")
                         // 采购审批：管理员、采购员与药剂科（提交/查询）、审核员（审批）
                         .requestMatchers("/purchase/**", "/api/purchase/**").hasAnyRole("ADMIN", "PHARMACIST", "PURCHASER", "REVIEWER")
-                        // 处方审核：管理员、审核员、医生可读写；护士仅可读（7.3 改进：护士处方查询）
-                        .requestMatchers(HttpMethod.GET, "/prescription", "/prescription/**", "/api/prescription", "/api/prescription/**").hasAnyRole("ADMIN", "REVIEWER", "DOCTOR", "NURSE")
+                        // 处方审核：管理员、审核员、医生可读写；护士无权限（需求变更）
+                        .requestMatchers(HttpMethod.GET, "/prescription", "/prescription/**", "/api/prescription", "/api/prescription/**").hasAnyRole("ADMIN", "REVIEWER", "DOCTOR")
                         // POST 创建/提交等（含 /api 前缀，避免经代理时 403）
                         .requestMatchers(HttpMethod.POST, "/prescription", "/prescription/**", "/api/prescription", "/api/prescription/**").hasAnyRole("ADMIN", "REVIEWER", "DOCTOR")
                         .requestMatchers("/prescription", "/prescription/**", "/api/prescription", "/api/prescription/**").hasAnyRole("ADMIN", "REVIEWER", "DOCTOR")
